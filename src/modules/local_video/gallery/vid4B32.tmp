@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://fydoeusyggh7"]
+[gd_scene load_steps=6 format=3 uid="uid://fydoeusyggh7"]
 
-[ext_resource type="Script" path="res://src/modules/local_video/gallery/gallery_panel.gd" id="1_pkvf1"]
+[ext_resource type="Script" path="res://src/modules/local_video/gallery/video_gallery_panel.gd" id="1_pkvf1"]
 [ext_resource type="Texture2D" uid="uid://qyujppkvfx3c" path="res://assets/icon/search.png" id="2_0xv6w"]
 [ext_resource type="PackedScene" uid="uid://cvdq74aj46fv8" path="res://src/modules/local_video/gallery/video_gallery_item.tscn" id="3_hvf3j"]
+[ext_resource type="PackedScene" uid="uid://cxdjx58hokua" path="res://src/modules/local_video/gallery/video_gallery_tab.tscn" id="4_gg82m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8uvx"]
 content_margin_left = 30.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
 
-[node name="GalleryPanel" type="VBoxContainer"]
+[node name="VideoGalleryPanel" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,6 +77,13 @@ text = "平铺
 "
 alignment = 1
 
+[node name="NumberLabel" type="Label" parent="FunctionMargin/H"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "12/12"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
@@ -129,3 +137,6 @@ layout_mode = 2
 
 [node name="VideoGalleryItem15" parent="ScrollContainer/V" instance=ExtResource("3_hvf3j")]
 layout_mode = 2
+
+[node name="VideoGalleryTab" parent="." instance=ExtResource("4_gg82m")]
+visible = false

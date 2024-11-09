@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxdjx58hokua"]
+
+[ext_resource type="Script" path="res://src/modules/local_video/gallery/video_gallery_tab.gd" id="1_i2aoq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smttt"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="VideoGalleryTab" type="PopupPanel"]
+transparent_bg = true
+size = Vector2i(110, 138)
+visible = true
+transparent = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_smttt")
+script = ExtResource("1_i2aoq")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="OpenButton" type="Button" parent="Margin/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "打开"
+
+[node name="RenameButton" type="Button" parent="Margin/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "重命名"
+
+[node name="SetPictureButton" type="Button" parent="Margin/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "设置图片"
+
+[node name="DeleteButton" type="Button" parent="Margin/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "删除"

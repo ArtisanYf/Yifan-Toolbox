@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/modules/local_video/gallery/video_gallery_item.gd" id="1_sisq5"]
 
 [node name="VideoGalleryItem" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 82)
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 54.0
@@ -24,7 +24,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Icon" type="TextureRect" parent="H/Margin"]
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("1_fif8b")
 expand_mode = 1

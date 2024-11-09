@@ -34,3 +34,13 @@ func from_dict(data: Dictionary) -> VideoGallery:
 	is_deleted = data.get("is_deleted", false)
 	return self
 	
+# 将对象转换为字典
+func to_dict() -> Dictionary:
+	var dict = {}
+	if id != 0:
+		dict["id"] = id
+	dict["video_gallery_name"] = video_gallery_name
+	dict["cover_picture_path"] = cover_picture_path
+	dict["create_time"] = create_time
+	dict["is_deleted"] = is_deleted
+	return dict

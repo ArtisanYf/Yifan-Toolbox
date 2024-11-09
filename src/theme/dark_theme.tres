@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=30 format=3 uid="uid://cg8h7o4rpsx7b"]
+[gd_resource type="Theme" load_steps=33 format=3 uid="uid://cg8h7o4rpsx7b"]
 
 [ext_resource type="FontFile" uid="uid://co46gvwsrreeg" path="res://assets/fonts/SmileySans-Oblique.ttf" id="1_425ek"]
 
@@ -187,6 +187,27 @@ bg_color = Color(0.176471, 0.176471, 0.176471, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjlmn"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vx2m"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksu7b"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.203125, 0.203125, 0.203125, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioe7r"]
 bg_color = Color(0.296522, 0.645242, 0.806453, 1)
 
@@ -285,6 +306,10 @@ TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_rm2ga")
 TabBar/styles/tab_hovered = SubResource("StyleBoxFlat_u4oru")
 TabBar/styles/tab_selected = SubResource("StyleBoxFlat_380ma")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_62ykf")
+TabButton/base_type = &"Button"
+TabButton/styles/hover = SubResource("StyleBoxFlat_wjlmn")
+TabButton/styles/normal = SubResource("StyleBoxFlat_5vx2m")
+TabButton/styles/pressed = SubResource("StyleBoxFlat_ksu7b")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_ioe7r")
 TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_fgrae")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_ej3e5")

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DB="*res://src/globals/db.gd"
 VideoGalleryService="*res://src/globals/video_gallery_service.gd"
+Task="*res://src/globals/task.gd"
 
 [display]
 
