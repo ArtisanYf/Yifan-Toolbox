@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://bncflvup3c7pe"]
+
+[ext_resource type="Script" path="res://src/components/window_border.gd" id="1_1j2gd"]
+[ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="1_o7uaq"]
+[ext_resource type="Texture2D" uid="uid://crvl216l524eo" path="res://assets/icon/24gl-minimization.png" id="2_06eke"]
+[ext_resource type="Texture2D" uid="uid://b88krlhpe0j7g" path="res://assets/icon/maximize-1.png" id="3_nnw7a"]
+[ext_resource type="Texture2D" uid="uid://baak252u73jcc" path="res://assets/icon/shut_down-1.png" id="4_uj8k0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee8nt"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4pli"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_47dhs"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fg4lw"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra468"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.215902, 0.215902, 0.215902, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5a24"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txpky"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(1, 0, 0.0166664, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3505d"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.75, 0.2175, 0.226375, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eej76"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+
+[node name="WindowBorder" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_type_variation = &"MenuPanel"
+script = ExtResource("1_1j2gd")
+
+[node name="HBegin" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBegin"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+
+[node name="TextureButton" type="TextureButton" parent="HBegin/MarginContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture_normal = ExtResource("1_o7uaq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBegin"]
+layout_mode = 2
+text = "艺凡工具箱
+"
+
+[node name="HEnd" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="MinimizationButton" type="Button" parent="HEnd"]
+custom_minimum_size = Vector2(40, 22)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_ee8nt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b4pli")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_47dhs")
+icon = ExtResource("2_06eke")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MaximizeButton" type="Button" parent="HEnd"]
+custom_minimum_size = Vector2(40, 22)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_fg4lw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ra468")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e5a24")
+icon = ExtResource("3_nnw7a")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CloseButton" type="Button" parent="HEnd"]
+custom_minimum_size = Vector2(40, 21)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_txpky")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3505d")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eej76")
+icon = ExtResource("4_uj8k0")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

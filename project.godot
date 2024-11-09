@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Yifan Toolbox"
+run/main_scene="res://src/modules/home/home.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+DB="*res://src/globals/db.gd"
+VideoGalleryService="*res://src/globals/video_gallery_service.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/borderless=true
+window/size/transparent=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "orange",
+"res://assets/": "red",
+"res://src/common/": "green",
+"res://src/globals/": "pink",
+"res://src/main/": "purple",
+"res://src/modules/": "blue",
+"res://src/theme/": "orange"
+}
+
+[gui]
+
+theme/custom="res://src/theme/dark_theme.tres"
+theme/custom_font="res://assets/fonts/SmileySans-Oblique.ttf"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

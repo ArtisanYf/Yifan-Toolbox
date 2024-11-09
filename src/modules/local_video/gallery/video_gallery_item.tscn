@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvdq74aj46fv8"]
+
+[ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="1_fif8b"]
+[ext_resource type="Script" path="res://src/modules/local_video/gallery/video_gallery_item.gd" id="1_sisq5"]
+
+[node name="VideoGalleryItem" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_type_variation = &"VideoGalleryItem"
+script = ExtResource("1_sisq5")
+
+[node name="H" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="H"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Icon" type="TextureRect" parent="H/Margin"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("1_fif8b")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="V" type="VBoxContainer" parent="H"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NameLabel" type="Label" parent="H/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.882353, 0.882353, 0.882353, 1)
+text = "VAM
+"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="H/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.458824, 0.458824, 0.458824, 1)
+theme_override_font_sizes/font_size = 12
+text = "2024-9-29 15:41:02"
+vertical_alignment = 1
