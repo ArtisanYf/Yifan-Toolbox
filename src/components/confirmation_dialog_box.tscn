@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnatejms5lm1a"]
+
+[ext_resource type="Script" path="res://src/components/confirmation_dialog_box.gd" id="1_aat10"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vpqo"]
+bg_color = Color(0.105882, 0.105882, 0.121569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.231218, 0.231228, 0.25845, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ConfirmationDialogBox" type="Window"]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(250, 150)
+transient = true
+exclusive = true
+borderless = true
+transparent = true
+script = ExtResource("1_aat10")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0vpqo")
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="V" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/Margin/V"]
+layout_mode = 2
+text = "提示"
+horizontal_alignment = 1
+
+[node name="ContentLabel" type="Label" parent="Panel/Margin/V"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 6
+text = "确认删除？"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="H" type="HBoxContainer" parent="Panel/Margin/V"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Panel/Margin/V/H"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"AddButton"
+text = "确认"
+
+[node name="CancelButton" type="Button" parent="Panel/Margin/V/H"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"RemoveButton"
+text = "取消"

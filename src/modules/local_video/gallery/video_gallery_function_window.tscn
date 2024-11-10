@@ -14,10 +14,11 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+anti_aliasing_size = 0.01
 
 [node name="VideoGalleryFunctionWindow" type="Window"]
+disable_3d = true
 transparent_bg = true
-mode = 2
 initial_position = 1
 size = Vector2i(400, 150)
 transient = true
@@ -26,7 +27,7 @@ borderless = true
 transparent = true
 script = ExtResource("1_jh5l8")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,49 +35,53 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_di58u")
 
-[node name="V" type="VBoxContainer" parent="PanelContainer"]
+[node name="V" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 398.0
+offset_bottom = 148.0
 
-[node name="TitleMargin" type="MarginContainer" parent="PanelContainer/V"]
+[node name="TitleMargin" type="MarginContainer" parent="Panel/V"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 15
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/V/TitleMargin"]
+[node name="TitleLabel" type="Label" parent="Panel/V/TitleMargin"]
 layout_mode = 2
 text = "新建库"
 
-[node name="EditMargin" type="MarginContainer" parent="PanelContainer/V"]
+[node name="EditMargin" type="MarginContainer" parent="Panel/V"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 
-[node name="LineEdit" type="LineEdit" parent="PanelContainer/V/EditMargin"]
+[node name="LineEdit" type="LineEdit" parent="Panel/V/EditMargin"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 placeholder_text = "请输入"
 clear_button_enabled = true
 caret_blink = true
 
-[node name="ExecuteMargin" type="MarginContainer" parent="PanelContainer/V"]
+[node name="ExecuteMargin" type="MarginContainer" parent="Panel/V"]
 layout_mode = 2
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 
-[node name="H" type="HBoxContainer" parent="PanelContainer/V/ExecuteMargin"]
+[node name="H" type="HBoxContainer" parent="Panel/V/ExecuteMargin"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="ConfirmButton" type="Button" parent="PanelContainer/V/ExecuteMargin/H"]
+[node name="ConfirmButton" type="Button" parent="Panel/V/ExecuteMargin/H"]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_type_variation = &"AddButton"
 text = "确认"
 
-[node name="CancelButton" type="Button" parent="PanelContainer/V/ExecuteMargin/H"]
+[node name="CancelButton" type="Button" parent="Panel/V/ExecuteMargin/H"]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_type_variation = &"RemoveButton"

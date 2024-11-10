@@ -1,6 +1,7 @@
 extends PanelContainer
 
-
+const MAXIMIZE_1_32 = preload("res://assets/icon/maximize_1_32.png")
+const MAXIMIZE_3_32 = preload("res://assets/icon/maximize_3_32.png")
 var is_dragging = false  # 用来记录是否在拖动窗口
 
 var drag_offset = Vector2i.ZERO  # 记录拖动的偏移量
@@ -36,7 +37,7 @@ func window_moving(event: InputEvent) -> void:
 			var x: float = float(DisplayServer.mouse_get_position().x) / window.size.x
 			window.mode = Window.Mode.MODE_WINDOWED
 			drag_offset = Vector2i(int(window.size.x * x), 0)
-			maximize_button.icon = load("res://assets/icon/maximize-1.png")
+			maximize_button.icon = MAXIMIZE_1_32
 		window.position = DisplayServer.mouse_get_position() - drag_offset
 
 # 最小化窗口
@@ -47,10 +48,10 @@ func _on_minimization_button_pressed():
 func _on_maximize_button_pressed():
 	if window.mode != Window.Mode.MODE_MAXIMIZED:
 		window.mode = Window.Mode.MODE_MAXIMIZED
-		maximize_button.icon = load("res://assets/icon/maximize-3.png")
+		maximize_button.icon = MAXIMIZE_3_32
 	else:
 		window.mode = Window.Mode.MODE_WINDOWED
-		maximize_button.icon = load("res://assets/icon/maximize-1.png")
+		maximize_button.icon = MAXIMIZE_1_32
 		
 # 关闭窗口
 func _on_close_button_pressed():

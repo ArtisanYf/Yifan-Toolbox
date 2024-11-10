@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://src/components/window_border.gd" id="1_1j2gd"]
 [ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="1_o7uaq"]
-[ext_resource type="Texture2D" uid="uid://crvl216l524eo" path="res://assets/icon/24gl-minimization.png" id="2_06eke"]
-[ext_resource type="Texture2D" uid="uid://b88krlhpe0j7g" path="res://assets/icon/maximize-1.png" id="3_nnw7a"]
-[ext_resource type="Texture2D" uid="uid://baak252u73jcc" path="res://assets/icon/shut_down-1.png" id="4_uj8k0"]
+[ext_resource type="Texture2D" uid="uid://kh24jgrmk1jc" path="res://assets/icon/minimize_1_32.png" id="3_n1nwu"]
+[ext_resource type="Texture2D" uid="uid://b1ojlrsfxf25u" path="res://assets/icon/maximize_1_32.png" id="4_vdb2t"]
+[ext_resource type="Texture2D" uid="uid://bnv7g8aow738m" path="res://assets/icon/shut_down_1_32.png" id="5_a1bud"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee8nt"]
 content_margin_left = 12.0
@@ -90,7 +90,7 @@ layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_ee8nt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_b4pli")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_47dhs")
-icon = ExtResource("2_06eke")
+icon = ExtResource("3_n1nwu")
 icon_alignment = 1
 expand_icon = true
 
@@ -101,7 +101,7 @@ size_flags_horizontal = 4
 theme_override_styles/hover = SubResource("StyleBoxFlat_fg4lw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ra468")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e5a24")
-icon = ExtResource("3_nnw7a")
+icon = ExtResource("4_vdb2t")
 icon_alignment = 1
 expand_icon = true
 
@@ -111,7 +111,7 @@ layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_txpky")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3505d")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eej76")
-icon = ExtResource("4_uj8k0")
+icon = ExtResource("5_a1bud")
 icon_alignment = 1
 expand_icon = true
 

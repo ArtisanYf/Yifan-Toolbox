@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://fydoeusyggh7"]
+[gd_scene load_steps=7 format=3 uid="uid://fydoeusyggh7"]
 
 [ext_resource type="Script" path="res://src/modules/local_video/gallery/video_gallery_panel.gd" id="1_pkvf1"]
-[ext_resource type="Texture2D" uid="uid://qyujppkvfx3c" path="res://assets/icon/search.png" id="2_0xv6w"]
+[ext_resource type="Texture2D" uid="uid://dx7dk0bfvldes" path="res://assets/icon/search_32.png" id="2_bq43e"]
 [ext_resource type="PackedScene" uid="uid://cvdq74aj46fv8" path="res://src/modules/local_video/gallery/video_gallery_item.tscn" id="3_hvf3j"]
+[ext_resource type="Texture2D" uid="uid://byvceqj0cxf1n" path="res://assets/icon/sort_32.png" id="3_uxj14"]
 [ext_resource type="PackedScene" uid="uid://cxdjx58hokua" path="res://src/modules/local_video/gallery/video_gallery_tab.tscn" id="4_gg82m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8uvx"]
@@ -47,7 +48,7 @@ offset_top = -10.0
 offset_right = 24.0
 offset_bottom = 10.0
 grow_vertical = 2
-icon = ExtResource("2_0xv6w")
+icon = ExtResource("2_bq43e")
 alignment = 0
 expand_icon = true
 
@@ -67,9 +68,13 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Button" type="Button" parent="FunctionMargin/H"]
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
-text = "名称排序
+text = "
 "
+icon = ExtResource("3_uxj14")
+icon_alignment = 1
+expand_icon = true
 
 [node name="CheckButton" type="CheckButton" parent="FunctionMargin/H"]
 layout_mode = 2
@@ -92,6 +97,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 8
 
 [node name="VideoGalleryItem" parent="ScrollContainer/V" instance=ExtResource("3_hvf3j")]
 layout_mode = 2
@@ -137,6 +143,9 @@ layout_mode = 2
 
 [node name="VideoGalleryItem15" parent="ScrollContainer/V" instance=ExtResource("3_hvf3j")]
 layout_mode = 2
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
 
 [node name="VideoGalleryTab" parent="." instance=ExtResource("4_gg82m")]
 visible = false

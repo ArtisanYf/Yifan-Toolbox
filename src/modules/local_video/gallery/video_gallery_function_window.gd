@@ -12,15 +12,15 @@ var current_type = Window_Type.CREATE
 
 var video_gallery_id: int
 
-@onready var title_label: Label = $PanelContainer/V/TitleMargin/TitleLabel
-@onready var line_edit: LineEdit = $PanelContainer/V/EditMargin/LineEdit
-@onready var confirm_button: Button = $PanelContainer/V/ExecuteMargin/H/ConfirmButton
-@onready var cancel_button: Button = $PanelContainer/V/ExecuteMargin/H/CancelButton
+@onready var title_label: Label = $Panel/V/TitleMargin/TitleLabel
+@onready var line_edit: LineEdit = $Panel/V/EditMargin/LineEdit
+@onready var confirm_button: Button = $Panel/V/ExecuteMargin/H/ConfirmButton
+@onready var cancel_button: Button = $Panel/V/ExecuteMargin/H/CancelButton
 
 func _ready() -> void:
 	cancel_button.pressed.connect(_on_cancel_button_pressed)
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
-	get_parent().modulate = Color(1, 1, 1, 0.5)
+	get_parent().modulate = Color.html("#a1a1a1")
 	line_edit.grab_focus()
 
 ## 初始化

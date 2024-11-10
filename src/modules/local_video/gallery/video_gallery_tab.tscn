@@ -51,3 +51,40 @@ text = "设置图片"
 layout_mode = 2
 theme_type_variation = &"TabButton"
 text = "删除"
+
+[node name="Margin2" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 110.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="Margin2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="OpenButton" type="Button" parent="Margin2/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "名称"
+
+[node name="RenameButton" type="Button" parent="Margin2/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "创建时间"
+
+[node name="SetPictureButton" type="Button" parent="Margin2/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "访问次数
+"
+
+[node name="DeleteButton" type="Button" parent="Margin2/V"]
+layout_mode = 2
+theme_type_variation = &"TabButton"
+text = "数目"

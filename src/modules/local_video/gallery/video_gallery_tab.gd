@@ -1,3 +1,4 @@
+class_name VideoGalleryTab
 extends PopupPanel
 
 signal rename(id: int)
@@ -27,7 +28,6 @@ func _ready() -> void:
 	delete_button.pressed.connect(_on_delete_button_pressed)
 	
 func _on_open_button_pressed() -> void:
-	set_picture.emit(id)
 	visible = false
 	
 func _on_rename_button_pressed() -> void:
@@ -35,9 +35,9 @@ func _on_rename_button_pressed() -> void:
 	visible = false
 	
 func _on_set_picture_pressed() -> void:
-	set_picture.emit(id)
 	visible = false
+	set_picture.emit(id)
 	
 func _on_delete_button_pressed() -> void:
-	set_picture.emit()
+	delete.emit(id)
 	visible = false

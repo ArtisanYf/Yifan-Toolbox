@@ -130,3 +130,20 @@ func delete_row(conditions: String) -> bool:
 	if success:
 		change_video_gallery_array.emit()
 	return success
+
+# 删除库
+func delete(basic_builder: BasicBuilder) -> bool:
+	var success = db.delete_rows(TABLE_NAME, basic_builder.conditions)
+	if success:
+		change_video_gallery_array.emit(Change_Array_Type.DELETE, null)
+	return success
+
+func logic_delete(update_builder: UpdateBuilder) -> bool:
+	if update_builder.table_logic != "":
+		update_builder.dict[update_builder.table_logic] = 1
+	var success = db.update_rows(TABLE_NAME, update_builder.conditions, update_builder.dict)
+	if success:
+		var video_gallery = VideoGallery.new()
+		video_gallery.id = update_builder.param.id
+		change_video_gallery_array.emit(Change_Array_Type.DELETE, video_gallery)
+	return success
