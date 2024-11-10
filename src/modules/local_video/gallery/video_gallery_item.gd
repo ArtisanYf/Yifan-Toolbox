@@ -5,6 +5,8 @@ signal right_click(id: int)
 
 const THEME_TYPE = "VideoGalleryItem"
 
+const VIDEO_ITEM_PAGE = "res://src/modules/local_video/video/video_item_page.tscn"
+
 var video_gallery: VideoGallery
 
 var styles_box: StyleBoxFlat
@@ -18,6 +20,7 @@ var cover_picture_texture: Texture2D:
 @onready var icon: TextureRect = $H/Margin/Icon
 @onready var name_label: Label = $H/V/NameLabel
 @onready var time_label: Label = $H/V/TimeLabel
+@onready var double_click_timer: Timer = $DoubleClickTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,14 +31,14 @@ func _ready() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		#if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.pressed:
-			## 双击切换场景
-			#if double_click_timer.is_stopped():
-				#double_click_timer.start()
-			#else:
-				#var tree := get_tree()
-				#Game.get_video_gallery_service().current_video_gallery = get_video_gallery()
-				#tree.change_scene_to_file(VIDEO_CONTAINER)
+		if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.pressed:
+			# 双击切换场景
+			if double_click_timer.is_stopped():
+				double_click_timer.start()
+			else:
+				var tree := get_tree()
+				VideoGalleryService.current_video_gallery = video_gallery
+				tree.change_scene_to_file(VIDEO_ITEM_PAGE)
 		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
 			right_click.emit(video_gallery.id)
 

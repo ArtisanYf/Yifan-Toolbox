@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8bggmoybbfjw"]
+
+[ext_resource type="Script" path="res://src/modules/local_video/video/video_item_page.gd" id="1_xyess"]
+[ext_resource type="PackedScene" uid="uid://bncflvup3c7pe" path="res://src/components/window_border.tscn" id="2_4be1s"]
+[ext_resource type="Texture2D" uid="uid://bk5x7s201nnw1" path="res://assets/icon/home_32.png" id="3_thu2b"]
+[ext_resource type="Texture2D" uid="uid://d4bgcsbkp1nkf" path="res://assets/icon/video_16.png" id="4_1exjo"]
+[ext_resource type="PackedScene" uid="uid://ckxysqmcvunp5" path="res://src/modules/local_video/video/video_item_panel.tscn" id="6_d1sdk"]
+
+[node name="VideoPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xyess")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="WindowBorder" parent="V" instance=ExtResource("2_4be1s")]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="MenuPanel" type="PanelContainer" parent="V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MenuPanel"
+
+[node name="V" type="VBoxContainer" parent="V/H/MenuPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Margin" type="MarginContainer" parent="V/H/MenuPanel/V"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="H" type="HBoxContainer" parent="V/H/MenuPanel/V/Margin"]
+layout_mode = 2
+
+[node name="HomeButton" type="Button" parent="V/H/MenuPanel/V/Margin/H"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+icon = ExtResource("3_thu2b")
+expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="V/H/MenuPanel/V/Margin/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "AAA"
+popup/item_1/text = "222"
+popup/item_1/id = 1
+
+[node name="Button" type="Button" parent="V/H/MenuPanel/V"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "所有视频"
+icon = ExtResource("4_1exjo")
+alignment = 0
+expand_icon = true
+
+[node name="ContentPanel" type="PanelContainer" parent="V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+theme_type_variation = &"ContentPanel"
+
+[node name="VideoPanel" parent="V/H/ContentPanel" instance=ExtResource("6_d1sdk")]
+layout_mode = 2

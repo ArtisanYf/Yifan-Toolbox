@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv7bqxhadg754"]
+
+[ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="1_46jce"]
+[ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="2_hbc41"]
+[ext_resource type="Script" path="res://src/modules/local_video/video/video_item_container.gd" id="3_lrdkl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xilvw"]
+shader = ExtResource("1_46jce")
+shader_parameter/strength = 1.0
+shader_parameter/iChannel0 = ExtResource("2_hbc41")
+
+[node name="VideoItemContainer" type="PanelContainer"]
+material = SubResource("ShaderMaterial_xilvw")
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -150.0
+offset_right = 152.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"VideoItemPanel"
+script = ExtResource("3_lrdkl")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureMargin" type="MarginContainer" parent="V"]
+layout_mode = 2
+
+[node name="CoverPicture" type="TextureRect" parent="V/TextureMargin"]
+custom_minimum_size = Vector2(282, 158.625)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_hbc41")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="TimeMargin" type="MarginContainer" parent="V"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="TimeLabel" type="Label" parent="V/TimeMargin"]
+layout_mode = 2
+text = "爱笑的眼睛
+"
+
+[node name="NameMargin" type="MarginContainer" parent="V"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="NameLabel" type="Label" parent="V/NameMargin"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "爱笑的眼睛
+"
+text_overrun_behavior = 4

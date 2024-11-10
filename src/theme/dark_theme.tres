@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=33 format=3 uid="uid://cg8h7o4rpsx7b"]
+[gd_resource type="Theme" load_steps=36 format=3 uid="uid://cg8h7o4rpsx7b"]
 
 [ext_resource type="FontFile" uid="uid://co46gvwsrreeg" path="res://assets/fonts/SmileySans-Oblique.ttf" id="1_425ek"]
 
@@ -54,7 +54,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -132,6 +132,28 @@ bg_color = Color(0.270588, 0.270588, 0.270588, 1)
 border_width_left = 5
 border_color = Color(0.239216, 0.662745, 1, 1)
 border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot4yh"]
+content_margin_left = 5.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0912103, 0.357288, 0.8, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4li2l"]
+content_margin_left = 5.0
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_le8rm"]
 bg_color = Color(0.878431, 0.25098, 0.207843, 1)
@@ -228,10 +250,10 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvu01"]
 bg_color = Color(0.219608, 0.219608, 0.219608, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.344076, 0.344076, 0.344076, 1)
 border_blend = true
 corner_radius_top_left = 5
@@ -241,16 +263,23 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc8mr"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.233925, 0.233925, 0.233925, 1)
 border_blend = true
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kd26"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [resource]
 AddButton/base_type = &"Button"
@@ -293,6 +322,10 @@ MenuPanelButton/styles/hover = SubResource("StyleBoxFlat_uo5ov")
 MenuPanelButton/styles/hover_pressed = SubResource("StyleBoxFlat_ncl5f")
 MenuPanelButton/styles/normal = SubResource("StyleBoxFlat_y3e7m")
 MenuPanelButton/styles/pressed = SubResource("StyleBoxFlat_b0i0o")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_ot4yh")
+OptionButton/styles/hover_pressed = SubResource("StyleBoxFlat_ot4yh")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_4li2l")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_ot4yh")
 RemoveButton/base_type = &"Button"
 RemoveButton/styles/hover = SubResource("StyleBoxFlat_le8rm")
 RemoveButton/styles/normal = SubResource("StyleBoxFlat_n02j8")
@@ -316,3 +349,5 @@ TextEdit/styles/focus = SubResource("StyleBoxFlat_ej3e5")
 VideoGalleryItem/base_type = &"PanelContainer"
 VideoGalleryItem/styles/hover = SubResource("StyleBoxFlat_rvu01")
 VideoGalleryItem/styles/panel = SubResource("StyleBoxFlat_yc8mr")
+VideoItemPanel/base_type = &"PanelContainer"
+VideoItemPanel/styles/panel = SubResource("StyleBoxFlat_7kd26")

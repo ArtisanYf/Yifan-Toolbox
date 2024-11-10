@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvdq74aj46fv8"]
+[gd_scene load_steps=6 format=3 uid="uid://cvdq74aj46fv8"]
 
 [ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="1_fif8b"]
 [ext_resource type="Script" path="res://src/modules/local_video/gallery/video_gallery_item.gd" id="1_sisq5"]
+[ext_resource type="Texture2D" uid="uid://bhf8tx6v8y250" path="res://assets/icon/total_32.png" id="3_jkchc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0ifq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fw5rr"]
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 
 [node name="VideoGalleryItem" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 82)
@@ -15,6 +22,7 @@ script = ExtResource("1_sisq5")
 
 [node name="H" type="HBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="Margin" type="MarginContainer" parent="H"]
 layout_mode = 2
@@ -48,3 +56,61 @@ theme_override_colors/font_color = Color(0.458824, 0.458824, 0.458824, 1)
 theme_override_font_sizes/font_size = 12
 text = "2024-9-29 15:41:02"
 vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h0ifq")
+
+[node name="MarginContainer" type="MarginContainer" parent="H"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+
+[node name="Button" type="TextureRect" parent="H/MarginContainer"]
+modulate = Color(0.351563, 0.351563, 0.351563, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 8
+tooltip_text = "数量"
+texture = ExtResource("3_jkchc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="H"]
+modulate = Color(0.352941, 0.352941, 0.352941, 1)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fw5rr")
+text = "0
+"
+horizontal_alignment = 3
+vertical_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="H"]
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="Button" type="TextureRect" parent="H/VBoxContainer2"]
+modulate = Color(0.352941, 0.352941, 0.352941, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_jkchc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="H"]
+visible = false
+modulate = Color(0.352941, 0.352941, 0.352941, 1)
+layout_mode = 2
+size_flags_vertical = 8
+text = "0
+"
+horizontal_alignment = 3
+vertical_alignment = 2
+
+[node name="DoubleClickTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

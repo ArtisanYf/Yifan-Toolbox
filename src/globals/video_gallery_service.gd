@@ -20,17 +20,14 @@ const COVER_PICTURE_PATH := "user://video_gallery_cover_picture/"
 # 表名
 const TABLE_NAME := "t_video_gallery"
 
-## 视频库列表
-#var video_gallery_array: Array
-
 # 字段名
-var columns = ["id", "video_gallery_name", "cover_picture_path", "create_time"]
+var columns = ["id", "video_gallery_name", "cover_picture_path", "create_time", "is_deleted"]
 
 # db
 var db := DB.db
-
+#
 # 当前所选视频库
-var current_video_gallery :Dictionary:
+var current_video_gallery: VideoGallery:
 	set(v):
 		current_video_gallery = v
 		change_current_video_gallery.emit()
@@ -74,10 +71,6 @@ func _ready() -> void:
 	print("视频库初始化...")
 	# 静态创建目录
 	DirAccess.make_dir_absolute(COVER_PICTURE_PATH)
-
-## 查询列 默认查询全部返回全部字段
-func select_rows(conditions: String = "", columns: Array = columns) -> Array:
-	return db.select_rows(TABLE_NAME, conditions, columns)
 	
 ## 查询列
 func select_array(query_buildder: QueryBuilder) -> Array:
@@ -93,13 +86,6 @@ func select_one(query_buildder: QueryBuilder) -> VideoGallery:
 	if array.is_empty():
 		return null
 	return VideoGallery.new(array[0])
-
-## 新增库
-func insert_row(dict: Dictionary) -> bool:
-	var success = db.insert_row(TABLE_NAME, dict)
-	if success:
-		change_video_gallery_array.emit()
-	return success
 	
 ## 新增库
 func insert(video_gallery: VideoGallery) -> bool:
@@ -111,24 +97,10 @@ func insert(video_gallery: VideoGallery) -> bool:
 	return success
 
 ## 更新库
-func update_row(conditions: String, dict: Dictionary) -> bool:
-	var success = db.update_rows(TABLE_NAME, conditions, dict)
-	if success:
-		change_video_gallery_array.emit()
-	return success
-	
-### 更新库
 func update(update_builder: UpdateBuilder) -> bool:
 	var success = db.update_rows(TABLE_NAME, update_builder.conditions, update_builder.dict)
 	if success:
 		change_video_gallery_array.emit(Change_Array_Type.UPDATE, VideoGallery.new(update_builder.param))
-	return success
-
-# 删除库
-func delete_row(conditions: String) -> bool:
-	var success = db.delete_rows(TABLE_NAME, conditions)
-	if success:
-		change_video_gallery_array.emit()
 	return success
 
 # 删除库
@@ -138,6 +110,7 @@ func delete(basic_builder: BasicBuilder) -> bool:
 		change_video_gallery_array.emit(Change_Array_Type.DELETE, null)
 	return success
 
+# 逻辑删除
 func logic_delete(update_builder: UpdateBuilder) -> bool:
 	if update_builder.table_logic != "":
 		update_builder.dict[update_builder.table_logic] = 1

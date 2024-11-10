@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 
 DB="*res://src/globals/db.gd"
 VideoGalleryService="*res://src/globals/video_gallery_service.gd"
+VideoItemService="*res://src/globals/video_item_service.gd"
+SystemSettings="*res://src/globals/system_settings.gd"
 Task="*res://src/globals/task.gd"
 
 [display]
@@ -43,6 +45,7 @@ folder_colors={
 "res://src/globals/": "pink",
 "res://src/main/": "purple",
 "res://src/modules/": "blue",
+"res://src/shaders/": "pink",
 "res://src/theme/": "orange"
 }
 
