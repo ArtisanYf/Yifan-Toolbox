@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckxysqmcvunp5"]
+[gd_scene load_steps=10 format=3 uid="uid://ckxysqmcvunp5"]
 
 [ext_resource type="Script" path="res://src/modules/local_video/video/video_item_panel.gd" id="1_jy2dn"]
 [ext_resource type="Texture2D" uid="uid://dx7dk0bfvldes" path="res://assets/icon/search_32.png" id="1_qvf35"]
@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dv7bqxhadg754" path="res://src/modules/local_video/video/video_item_container.tscn" id="3_s75ic"]
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="5_06jvb"]
 [ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="6_5g1yo"]
+[ext_resource type="PackedScene" uid="uid://d0od6saaado2c" path="res://src/modules/local_video/video/video_item_tab.tscn" id="7_ndqgr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8uvx"]
 content_margin_left = 30.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbis2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_noq32"]
 resource_local_to_scene = true
 shader = ExtResource("5_06jvb")
 shader_parameter/strength = 5.0
@@ -119,5 +120,9 @@ theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 
 [node name="VideoItemContainer" parent="ScrollContainer/HFlow" instance=ExtResource("3_s75ic")]
-material = SubResource("ShaderMaterial_cbis2")
+visible = false
+material = SubResource("ShaderMaterial_noq32")
 layout_mode = 2
+
+[node name="VideoItemTab" parent="." instance=ExtResource("7_ndqgr")]
+visible = false

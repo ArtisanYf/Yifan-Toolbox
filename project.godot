@@ -22,7 +22,7 @@ DB="*res://src/globals/db.gd"
 VideoGalleryService="*res://src/globals/video_gallery_service.gd"
 VideoItemService="*res://src/globals/video_item_service.gd"
 SystemSettings="*res://src/globals/system_settings.gd"
-Task="*res://src/globals/task.gd"
+TaskService="*res://src/globals/task_service.gd"
 
 [display]
 

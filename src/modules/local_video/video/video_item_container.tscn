@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xilvw"]
 shader = ExtResource("1_46jce")
-shader_parameter/strength = 1.0
+shader_parameter/strength = 10.0
 shader_parameter/iChannel0 = ExtResource("2_hbc41")
 
 [node name="VideoItemContainer" type="PanelContainer"]

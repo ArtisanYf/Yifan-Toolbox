@@ -33,8 +33,9 @@ size_flags_vertical = 3
 theme_override_constants/separation = 0
 
 [node name="MenuPanel" type="PanelContainer" parent="V/H"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 theme_type_variation = &"MenuPanel"
 
 [node name="V" type="VBoxContainer" parent="V/H/MenuPanel"]
@@ -60,24 +61,25 @@ expand_icon = true
 [node name="OptionButton" type="OptionButton" parent="V/H/MenuPanel/V/Margin/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-selected = 0
-item_count = 2
-popup/item_0/text = "AAA"
-popup/item_1/text = "222"
-popup/item_1/id = 1
 
 [node name="Button" type="Button" parent="V/H/MenuPanel/V"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_type_variation = &"MenuPanelButton"
+toggle_mode = true
+button_pressed = true
 text = "所有视频"
 icon = ExtResource("4_1exjo")
 alignment = 0
 expand_icon = true
 
+[node name="ProgressBar" type="ProgressBar" parent="V/H/MenuPanel/V"]
+layout_mode = 2
+max_value = 1.0
+
 [node name="ContentPanel" type="PanelContainer" parent="V/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
 theme_type_variation = &"ContentPanel"
 
 [node name="VideoPanel" parent="V/H/ContentPanel" instance=ExtResource("6_d1sdk")]

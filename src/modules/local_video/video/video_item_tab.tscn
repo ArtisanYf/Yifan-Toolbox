@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0od6saaado2c"]
+
+[ext_resource type="Texture2D" uid="uid://ctsixx6r60ulw" path="res://assets/icon/expand_arrow_16.png" id="1_5rgkn"]
+[ext_resource type="Script" path="res://src/modules/local_video/video/video_item_tab.gd" id="1_yl6jf"]
+[ext_resource type="Script" path="res://src/nodes/tab_button.gd" id="2_3txxe"]
+
+[node name="VideoItemTab" type="PopupPanel"]
+transparent_bg = true
+size = Vector2i(100, 278)
+visible = true
+transparent = true
+theme_type_variation = &"TabVideoItemPanel"
+script = ExtResource("1_yl6jf")
+
+[node name="FunctionMargin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="FunctionMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="PlayButton" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "播放"
+script = ExtResource("2_3txxe")
+
+[node name="OpenLocationButton" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "打开位置"
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_3txxe")
+
+[node name="TextureRect" type="TextureRect" parent="FunctionMargin/V/OpenLocationButton"]
+modulate = Color(0.675781, 0.675781, 0.675781, 1)
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_5rgkn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SetPictureButton" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "设置封面"
+
+[node name="SetPictureButton2" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "添加标记"
+
+[node name="SetPictureButton3" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "设置封面"
+
+[node name="SetPictureButton4" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "设置封面"
+
+[node name="SetPictureButton5" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "设置封面"
+
+[node name="SetPictureButton6" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "设置封面"
+
+[node name="DeleteButton" type="Button" parent="FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "删除"
+
+[node name="OpenLocationTabPanel" type="PopupPanel" parent="."]
+auto_translate_mode = 1
+transparent_bg = true
+transparent = true
+theme_type_variation = &"TabVideoItemPanel"
+
+[node name="FunctionMargin" type="MarginContainer" parent="OpenLocationTabPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 98.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="V" type="VBoxContainer" parent="OpenLocationTabPanel/FunctionMargin"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="PlayButton" type="Button" parent="OpenLocationTabPanel/FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "影片"
+
+[node name="SetPictureButton" type="Button" parent="OpenLocationTabPanel/FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "海报图"
+
+[node name="SetPictureButton2" type="Button" parent="OpenLocationTabPanel/FunctionMargin/V"]
+layout_mode = 2
+theme_type_variation = &"TabVideoButton"
+text = "预览图"
+
+[node name="ShowTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

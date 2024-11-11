@@ -2,6 +2,7 @@ class_name VideoItemContainer
 extends PanelContainer
 
 signal change_cover_picture
+signal right_click(id: int)
 
 var video_item: VideoItem = VideoItem.new():
 	set(v):
@@ -28,6 +29,19 @@ var cover_picture_texture: Texture:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		#if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.pressed:
+			## 双击切换场景
+			#if double_click_timer.is_stopped():
+				#double_click_timer.start()
+			#else:
+				#VideoGalleryService.current_video_gallery = video_gallery
+				#var tree := get_tree()
+				#tree.change_scene_to_file(VIDEO_ITEM_PAGE)
+		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
+			right_click.emit(video_item.id)
 
 # 初始化本场景
 func init_scene(_video_item: VideoItem):

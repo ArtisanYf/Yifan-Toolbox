@@ -36,8 +36,8 @@ func _gui_input(event: InputEvent) -> void:
 			if double_click_timer.is_stopped():
 				double_click_timer.start()
 			else:
-				var tree := get_tree()
 				VideoGalleryService.current_video_gallery = video_gallery
+				var tree := get_tree()
 				tree.change_scene_to_file(VIDEO_ITEM_PAGE)
 		if event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and event.pressed:
 			right_click.emit(video_gallery.id)

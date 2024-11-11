@@ -122,8 +122,8 @@ func _on_v_scroll_bar_value_changed(value: float) -> void:
 				nodes.append(panel)
 				datas.append({ "cover_picture_path" = panel.video_gallery.cover_picture_path})
 	if not nodes.is_empty():
-		Task.add_task(
-			Task.Task_Type.LOAD_TEXTURE,
+		TaskService.add_task(
+			TaskService.Task_Type.LOAD_TEXTURE,
 			{
 				"nodes" = nodes,
 				"datas" = datas,

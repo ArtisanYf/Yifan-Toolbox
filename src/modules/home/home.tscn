@@ -35,8 +35,8 @@ size_flags_vertical = 3
 theme_override_constants/separation = 0
 
 [node name="MenuPanel" type="PanelContainer" parent="V/H"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_type_variation = &"MenuPanel"
 
 [node name="V" type="VBoxContainer" parent="V/H/MenuPanel"]
@@ -99,7 +99,6 @@ text = "MOD管理器
 [node name="ContentPanel" type="PanelContainer" parent="V/H"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
 theme_type_variation = &"ContentPanel"
 
 [node name="GalleryPanel" parent="V/H/ContentPanel" instance=ExtResource("4_2btfh")]

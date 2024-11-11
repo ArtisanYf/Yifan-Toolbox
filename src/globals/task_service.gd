@@ -1,4 +1,3 @@
-class_name TaskService
 extends Node
 
 ## 任务
@@ -71,34 +70,35 @@ func add_task(type: Task_Type, params: Dictionary) -> bool:
 # @param data: 包含纹理路径或资源信息的数组，与 nodes 对应。
 # @param texture_field: 用于从 data 中获取纹理路径的字段名。
 # @param texture_property: 要在节点上更新的纹理属性名称（如 "cover_picture_texture"）。
-func load_texture(nodes: Array, datas: Array, texture_field: String, texture_property: String, _load_texture_data: Dictionary) -> void:
+func load_texture(nodes: Array, datas: Array, texture_field: String, texture_property: String, load_texture_data: Dictionary) -> void:
 	   # 如果已有加载操作，先中止
-	if _load_texture_data.is_start:
-		_load_texture_data.is_stop = true  # 设置停止标志
+	if load_texture_data.is_start:
+		load_texture_data.is_stop = true  # 设置停止标志
 		print("正在中止上一个加载任务...")
 		 # 等待当前线程结束
-		_load_texture_data.thread.wait_to_finish()
+		load_texture_data.thread.wait_to_finish()
 	# 重置状态
-	_load_texture_data.is_start = true
-	_load_texture_data.is_stop = false  # 确保加载前重置停止标志
+	load_texture_data.is_start = true
+	load_texture_data.is_stop = false  # 确保加载前重置停止标志
 	var loading_mutex = Mutex.new()
-	_load_texture_data.thread = Thread.new()
+	load_texture_data.thread = Thread.new()
 	# 线程启动
-	_load_texture_data.thread.start(func():
+	load_texture_data.thread.start(func():
 		for i in range(0, datas.size()):
 			var texture = TextureUtil.create_texture(datas[i].get(texture_field))
 			# 使用 Mutex 锁保护 UI 更新
-			if _load_texture_data.is_stop:
+			if load_texture_data.is_stop:
 				print("加载任务已停止.")
 				return
 			loading_mutex.lock()
+			call_deferred("update_progress", float(i + 1) / nodes.size(), "11")
 			call_deferred("update_texture", nodes[i], texture, texture_property)  # 更新按钮图标
 			loading_mutex.unlock()
 		nodes.clear()
-		_load_texture_data.is_start = false  # 标记加载完成
+		load_texture_data.is_start = false  # 标记加载完成
 		print("加载纹理任务执行完毕!")
 	)
-	_load_texture_data.thread.wait_to_finish()
+	#load_texture_data.thread.wait_to_finish()
 # 在主线程中更新图标
 func update_texture(node: Node, texture: Texture, texture_property: String) -> void:
 	node.set(texture_property, texture) #设置图标
@@ -234,10 +234,10 @@ func add_task_queue(type: Task_Type, params: Dictionary) -> void:
 #func update_video_item(array: Array):
 	#Game.video_item_service.insert_rows(array)
 	#
-#func update_progress(v: float, name: String):
-	#progress = v
-	#progress_signal.emit(progress, name)
-	#print("Progress: ", progress)
+func update_progress(v: float, name: String):
+	progress = v
+	progress_signal.emit(progress, name)
+	print("Progress: ", progress)
 #
 #
 #

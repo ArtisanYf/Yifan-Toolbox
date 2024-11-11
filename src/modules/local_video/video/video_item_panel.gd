@@ -7,9 +7,11 @@ const VIDEO_ITEM_CONTAINER = preload("res://src/modules/local_video/video/video_
 @onready var number_label: Label = $FunctionMargin/H/NumberLabel
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var h_flow: HFlowContainer = $ScrollContainer/HFlow
+@onready var video_item_tab: PopupPanel = $VideoItemTab
 
 
 func _ready() -> void:
+	VideoGalleryService.change_current_video_gallery.connect(func(): refresh_video_item_all())
 	VideoItemService.change_video_item_array.connect(_on_change_video_item_array)
 	scroll_container.get_v_scroll_bar().value_changed.connect(_on_v_scroll_bar_value_changed)
 	add_button.pressed.connect(_on_add_button_pressed)
@@ -46,10 +48,14 @@ func instantiate_video_item(video_item: VideoItem) -> VideoItemContainer:
 		h_flow.add_child(video_item_scene)
 		# 初始化传参
 		video_item_scene.init_scene(video_item)
-		#video_item_scene.right_click.connect(_on_gallery_right_click)
+		video_item_scene.right_click.connect(_on_video_right_click)
 	
 		return video_item_scene
 
+func _on_video_right_click(id: int) -> void:
+	video_item_tab.position = DisplayServer.mouse_get_position()
+	video_item_tab.visible = true
+	video_item_tab.id = id
 
 func _on_add_button_pressed() -> void:
 	DisplayServer.file_dialog_show(
@@ -88,8 +94,8 @@ func _on_v_scroll_bar_value_changed(value: float) -> void:
 				nodes.append(panel)
 				datas.append({ "cover_picture_path" = panel.video_item.cover_picture_path})
 	if not nodes.is_empty():
-		Task.add_task(
-			Task.Task_Type.LOAD_TEXTURE,
+		TaskService.add_task(
+			TaskService.Task_Type.LOAD_TEXTURE,
 			{
 				"nodes" = nodes,
 				"datas" = datas,
