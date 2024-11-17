@@ -9,6 +9,11 @@ const VIDEO_ITEM_PAGE = "res://src/modules/local_video/video/video_item_page.tsc
 
 var video_gallery: VideoGallery
 
+var video_quantity: int:
+	set(v):
+		video_quantity = v
+		video_quantity_label.text = str(v)
+
 var styles_box: StyleBoxFlat
 var is_loading_icon = false
 
@@ -21,6 +26,7 @@ var cover_picture_texture: Texture2D:
 @onready var name_label: Label = $H/V/NameLabel
 @onready var time_label: Label = $H/V/TimeLabel
 @onready var double_click_timer: Timer = $DoubleClickTimer
+@onready var video_quantity_label: Label = $H/VideoQuantityLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,7 +50,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func refresh_video_gallery(_video_gallery: VideoGallery) -> void:
 	init_video_gallery(_video_gallery)
-	if video_gallery.cover_picture_path != "":
+	if video_gallery.cover_picture_path:
 		cover_picture_texture = TextureUtil.create_texture(video_gallery.cover_picture_path)
 	is_loading_icon = true
 

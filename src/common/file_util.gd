@@ -1,6 +1,11 @@
 class_name FileUtil
 extends Node
 
+static var video_type = ["mp4", "avi"]
+
+static var image_type = ["png", "jpg"]
+
+
 # 查询文件
 static func query_file(path: String) -> Array:
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -54,3 +59,12 @@ static func del_dir(dir_path: String) -> void:
 		var file_path := dir_path + "/" +file
 		DirAccess.remove_absolute(file_path)  # 删除文件
 	DirAccess.remove_absolute(dir_path) 
+
+
+# 将文件扩展名转换为 FileDialog 所需的过滤格式
+static func get_file_type_filter(file_types: Array) -> PackedStringArray:
+	var filter_string = "*.{0}".format([file_types[0]])
+	for i in range(1, file_types.size()):
+		filter_string += ",*.{0}".format([file_types[i]])
+	
+	return PackedStringArray([filter_string])

@@ -78,7 +78,7 @@ texture = ExtResource("3_jkchc")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="H"]
+[node name="VideoQuantityLabel" type="Label" parent="H"]
 modulate = Color(0.352941, 0.352941, 0.352941, 1)
 layout_mode = 2
 size_flags_vertical = 8

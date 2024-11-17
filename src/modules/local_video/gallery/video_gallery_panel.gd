@@ -50,6 +50,11 @@ func instantiate_video_gallery(count: int, video_gallery: VideoGallery) -> int:
 		var video_gallery_item = VIDEO_GALLERY_ITEM.instantiate()
 		# 将实例化的场景添加到父节点
 		v.add_child(video_gallery_item)
+		video_gallery_item.video_quantity = VideoItemService.select_one(
+			QueryBuilder.new()
+				.select(["count(*) as id"])
+				.eq("video_gallery_id", video_gallery.id)
+		).id
 		# 初始化传参
 		video_gallery_item.init_video_gallery(video_gallery)
 		video_gallery_item.right_click.connect(_on_gallery_right_click)
@@ -118,7 +123,7 @@ func _on_v_scroll_bar_value_changed(value: float) -> void:
 		# 检查PanelContainer是否在视口范围内
 		if not panel.is_loading_icon and panel.position.y < current_value:
 			panel.is_loading_icon = true
-			if panel.video_gallery.cover_picture_path != "":
+			if panel.video_gallery and panel.video_gallery.cover_picture_path:
 				nodes.append(panel)
 				datas.append({ "cover_picture_path" = panel.video_gallery.cover_picture_path})
 	if not nodes.is_empty():

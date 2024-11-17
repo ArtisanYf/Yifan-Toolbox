@@ -33,34 +33,7 @@ var current_video_gallery: VideoGallery:
 		change_current_video_gallery.emit()
 
 func _init() -> void:
-	var table_dict: Dictionary = {
-		"id": 
-			{
-				"data_type":"int", # 类型
-				"primary_key": true, # 是否主键
-				"not_null": true, # 不能为 null
-				"auto_increment": true # 自增
-			},
-		"video_gallery_name": 
-			{
-				"data_type":"text",
-				"not_null": true
-			},
-		"cover_picture_path":
-			{
-				"data_type":"text",
-			},
-		"create_time":
-			{
-				"data_type":"text",
-				"not_null": true
-			},
-		"is_deleted":
-			{
-				"data_type":"blob",
-				"not_null": true
-			}	
-	}
+	var table_dict :=VideoGallery.new().table_dict()
 	# 通过 sql 检查表是否已存在
 	db.query_with_bindings("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", [TABLE_NAME])
 	if db.query_result.is_empty():
@@ -112,7 +85,7 @@ func delete(basic_builder: BasicBuilder) -> bool:
 
 # 逻辑删除
 func logic_delete(update_builder: UpdateBuilder) -> bool:
-	if update_builder.table_logic != "":
+	if update_builder.table_logic:
 		update_builder.dict[update_builder.table_logic] = 1
 	var success = db.update_rows(TABLE_NAME, update_builder.conditions, update_builder.dict)
 	if success:

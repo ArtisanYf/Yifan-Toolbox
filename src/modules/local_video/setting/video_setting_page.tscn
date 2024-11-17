@@ -1,0 +1,181 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfgdch6cnijea"]
+
+[ext_resource type="Script" path="res://src/modules/local_video/setting/video_setting_page.gd" id="1_aigu7"]
+[ext_resource type="PackedScene" uid="uid://bncflvup3c7pe" path="res://src/components/window_border.tscn" id="1_yyput"]
+[ext_resource type="PackedScene" uid="uid://cdw0assc6w7yq" path="res://src/components/tips_container.tscn" id="3_trf3f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhabn"]
+bg_color = Color(0.105882, 0.105882, 0.121569, 1)
+
+[node name="VideoSettingPage" type="Window"]
+initial_position = 1
+size = Vector2i(800, 900)
+borderless = true
+script = ExtResource("1_aigu7")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhabn")
+
+[node name="V" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowBorder" parent="Panel/V" node_paths=PackedStringArray("window") instance=ExtResource("1_yyput")]
+layout_mode = 2
+window = NodePath("../../..")
+
+[node name="TabBar" type="TabBar" parent="Panel/V"]
+layout_mode = 2
+current_tab = 0
+tab_count = 2
+tab_0/title = "基本"
+tab_1/title = "视频处理"
+
+[node name="Margin" type="MarginContainer" parent="Panel/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BaseHBox" type="VBoxContainer" parent="Panel/V/Margin"]
+layout_mode = 2
+
+[node name="PlayHBoxc" type="HBoxContainer" parent="Panel/V/Margin/BaseHBox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Panel/V/Margin/BaseHBox/PlayHBoxc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "播放"
+
+[node name="Label2" type="Label" parent="Panel/V/Margin/BaseHBox/PlayHBoxc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "指定播放器
+"
+
+[node name="PlayLineEdit" type="LineEdit" parent="Panel/V/Margin/BaseHBox/PlayHBoxc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="PlaySelectButton" type="Button" parent="Panel/V/Margin/BaseHBox/PlayHBoxc"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "选择"
+
+[node name="VideoHandleHBox" type="HBoxContainer" parent="Panel/V/Margin"]
+visible = false
+layout_mode = 2
+
+[node name="BaseHBox" type="HBoxContainer" parent="Panel/V/Margin/VideoHandleHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "基本"
+
+[node name="Panel" type="PanelContainer" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 9.0
+
+[node name="V" type="VBoxContainer" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel"]
+layout_mode = 2
+
+[node name="FFmpegHBox" type="HBoxContainer" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFmpegHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "FFmpeg.exe 路径"
+
+[node name="FFmpegLineEdit" type="LineEdit" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFmpegHBox"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="FFmpegSelectButton" type="Button" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFmpegHBox"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_type_variation = &"AddButton"
+text = "选择文件"
+
+[node name="LinkButton" type="LinkButton" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFmpegHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.239216, 0.662745, 1, 1)
+text = "下载"
+uri = "https://www.gyan.dev/ffmpeg/builds/"
+
+[node name="FFprobeHBox" type="HBoxContainer" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFprobeHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "FFprobe.exe 路径"
+
+[node name="FFprobeLineEdit" type="LineEdit" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFprobeHBox"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="FFprobeSelectButton" type="Button" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFprobeHBox"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_type_variation = &"AddButton"
+text = "选择文件"
+
+[node name="LinkButton" type="LinkButton" parent="Panel/V/Margin/VideoHandleHBox/BaseHBox/Panel/V/FFprobeHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.239216, 0.662745, 1, 1)
+text = "下载"
+uri = "https://www.gyan.dev/ffmpeg/builds/"
+
+[node name="OperateMargin" type="MarginContainer" parent="Panel/V"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 30
+
+[node name="H" type="HBoxContainer" parent="Panel/V/OperateMargin"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+alignment = 1
+
+[node name="SaveButton" type="Button" parent="Panel/V/OperateMargin/H"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"AddButton"
+text = "保存"
+
+[node name="Button2" type="Button" parent="Panel/V/OperateMargin/H"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"RemoveButton"
+text = "取消"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TipsContainer" parent="CanvasLayer" instance=ExtResource("3_trf3f")]
+window_width = 800

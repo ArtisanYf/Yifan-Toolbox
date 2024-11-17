@@ -19,3 +19,9 @@ func orderByAsc(column: String) -> QueryBuilder:
 		conditions += "1 = 1"
 	conditions += " ".join([" ORDER BY", column, "Asc"])
 	return self
+
+func orderByRandom() -> QueryBuilder:
+	if conditions == "":
+		conditions += "1 = 1"
+	conditions += " ".join([" ORDER BY RANDOM()"])
+	return self

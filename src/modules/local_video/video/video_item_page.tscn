@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8bggmoybbfjw"]
+[gd_scene load_steps=9 format=3 uid="uid://c8bggmoybbfjw"]
 
 [ext_resource type="Script" path="res://src/modules/local_video/video/video_item_page.gd" id="1_xyess"]
 [ext_resource type="PackedScene" uid="uid://bncflvup3c7pe" path="res://src/components/window_border.tscn" id="2_4be1s"]
 [ext_resource type="Texture2D" uid="uid://bk5x7s201nnw1" path="res://assets/icon/home_32.png" id="3_thu2b"]
 [ext_resource type="Texture2D" uid="uid://d4bgcsbkp1nkf" path="res://assets/icon/video_16.png" id="4_1exjo"]
+[ext_resource type="Texture2D" uid="uid://bwcd83cibnjrg" path="res://assets/icon/performer_16.png" id="5_akfjn"]
+[ext_resource type="Texture2D" uid="uid://70k8cinytl14" path="res://assets/icon/setting_32.png" id="5_isb5c"]
 [ext_resource type="PackedScene" uid="uid://ckxysqmcvunp5" path="res://src/modules/local_video/video/video_item_panel.tscn" id="6_d1sdk"]
+[ext_resource type="PackedScene" uid="uid://bx0ggmmv51yvx" path="res://src/modules/local_video/video/video_performer_panel.tscn" id="8_oquwm"]
 
 [node name="VideoPage" type="Control"]
 layout_mode = 3
@@ -40,14 +43,14 @@ theme_type_variation = &"MenuPanel"
 
 [node name="V" type="VBoxContainer" parent="V/H/MenuPanel"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 0
 
 [node name="Margin" type="MarginContainer" parent="V/H/MenuPanel/V"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 20
 
 [node name="H" type="HBoxContainer" parent="V/H/MenuPanel/V/Margin"]
 layout_mode = 2
@@ -62,14 +65,33 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="V/H/MenuPanel/V"]
+[node name="AllVideoButton" type="Button" parent="V/H/MenuPanel/V"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_type_variation = &"MenuPanelButton"
 toggle_mode = true
-button_pressed = true
 text = "所有视频"
 icon = ExtResource("4_1exjo")
+alignment = 0
+expand_icon = true
+
+[node name="VideoPerformerButton" type="Button" parent="V/H/MenuPanel/V"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_type_variation = &"MenuPanelButton"
+toggle_mode = true
+text = "影片演员"
+icon = ExtResource("5_akfjn")
+alignment = 0
+expand_icon = true
+
+[node name="VideoLabelButton" type="Button" parent="V/H/MenuPanel/V"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_type_variation = &"MenuPanelButton"
+toggle_mode = true
+text = "我的标签"
+icon = ExtResource("5_akfjn")
 alignment = 0
 expand_icon = true
 
@@ -77,10 +99,38 @@ expand_icon = true
 layout_mode = 2
 max_value = 1.0
 
+[node name="Margin" type="MarginContainer" parent="V/H/MenuPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SettingButton" type="Button" parent="V/H/MenuPanel/Margin"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+icon = ExtResource("5_isb5c")
+icon_alignment = 2
+expand_icon = true
+
 [node name="ContentPanel" type="PanelContainer" parent="V/H"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ContentPanel"
 
-[node name="VideoPanel" parent="V/H/ContentPanel" instance=ExtResource("6_d1sdk")]
+[node name="V" type="VBoxContainer" parent="V/H/ContentPanel"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="V/H/ContentPanel/V"]
+layout_mode = 2
+size_flags_vertical = 0
+tab_close_display_policy = 2
+
+[node name="VideoItemPanel" parent="V/H/ContentPanel/V" instance=ExtResource("6_d1sdk")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VideoPerformerPanel" parent="V/H/ContentPanel/V" instance=ExtResource("8_oquwm")]
+visible = false
 layout_mode = 2

@@ -43,7 +43,7 @@ func _on_confirm_button_pressed() -> void:
 	match current_type:
 		Window_Type.CREATE:
 			var gallery_name := line_edit.text
-			if gallery_name != "":
+			if gallery_name:
 				var video_gallery = VideoGallery.new()
 				video_gallery.video_gallery_name = gallery_name
 				video_gallery.create_time = DateUtil.format_current_time()
@@ -51,7 +51,7 @@ func _on_confirm_button_pressed() -> void:
 
 		Window_Type.RENAME:
 			var gallery_name := line_edit.text
-			if gallery_name != "":
+			if gallery_name:
 				var update_builder = UpdateBuilder.new()
 				update_builder.eq("id", video_gallery_id)
 				update_builder.set_column("video_gallery_name", gallery_name)

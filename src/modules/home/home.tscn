@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp5bqiaoe2ful"]
+[gd_scene load_steps=7 format=3 uid="uid://bp5bqiaoe2ful"]
 
 [ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="1_qmldh"]
 [ext_resource type="Script" path="res://src/modules/home/home.gd" id="2_5xy71"]
 [ext_resource type="PackedScene" uid="uid://bncflvup3c7pe" path="res://src/components/window_border.tscn" id="2_vnih1"]
 [ext_resource type="PackedScene" uid="uid://fydoeusyggh7" path="res://src/modules/local_video/gallery/video_gallery_panel.tscn" id="4_2btfh"]
+
+[sub_resource type="Theme" id="Theme_aihs1"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_afsm3"]
 
@@ -14,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_aihs1")
 script = ExtResource("2_5xy71")
 
 [node name="V" type="VBoxContainer" parent="."]

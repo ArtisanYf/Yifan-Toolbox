@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckxysqmcvunp5"]
+[gd_scene load_steps=11 format=3 uid="uid://ckxysqmcvunp5"]
 
 [ext_resource type="Script" path="res://src/modules/local_video/video/video_item_panel.gd" id="1_jy2dn"]
 [ext_resource type="Texture2D" uid="uid://dx7dk0bfvldes" path="res://assets/icon/search_32.png" id="1_qvf35"]
 [ext_resource type="Texture2D" uid="uid://byvceqj0cxf1n" path="res://assets/icon/sort_32.png" id="2_hn66x"]
 [ext_resource type="PackedScene" uid="uid://dv7bqxhadg754" path="res://src/modules/local_video/video/video_item_container.tscn" id="3_s75ic"]
+[ext_resource type="Texture2D" uid="uid://c8bbtm410h6af" path="res://assets/icon/random_32.png" id="4_mnqfa"]
 [ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="5_06jvb"]
 [ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="6_5g1yo"]
 [ext_resource type="PackedScene" uid="uid://d0od6saaado2c" path="res://src/modules/local_video/video/video_item_tab.tscn" id="7_ndqgr"]
@@ -13,24 +14,19 @@ content_margin_left = 30.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_noq32"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfqmt"]
 resource_local_to_scene = true
 shader = ExtResource("5_06jvb")
 shader_parameter/strength = 5.0
 shader_parameter/iChannel0 = ExtResource("6_5g1yo")
 
-[node name="VideoPanel" type="VBoxContainer"]
+[node name="VideoItemPanel" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jy2dn")
-
-[node name="TabBar" type="TabBar" parent="."]
-layout_mode = 2
-tab_count = 1
-tab_0/title = "所有视频"
 
 [node name="SearchMargin" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -72,7 +68,7 @@ text = "添加视频
 "
 expand_icon = true
 
-[node name="AddButton2" type="Button" parent="SearchMargin/H"]
+[node name="ImportVideoButton" type="Button" parent="SearchMargin/H"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -96,6 +92,16 @@ icon = ExtResource("2_hn66x")
 icon_alignment = 1
 expand_icon = true
 
+[node name="RandomShowButton" type="Button" parent="FunctionMargin/H"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+tooltip_text = "随机展示"
+text = "
+"
+icon = ExtResource("4_mnqfa")
+icon_alignment = 1
+expand_icon = true
+
 [node name="CheckButton" type="CheckButton" parent="FunctionMargin/H"]
 layout_mode = 2
 text = "平铺 
@@ -112,17 +118,28 @@ vertical_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+vertical_scroll_mode = 2
 
 [node name="HFlow" type="HFlowContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
 
 [node name="VideoItemContainer" parent="ScrollContainer/HFlow" instance=ExtResource("3_s75ic")]
-visible = false
-material = SubResource("ShaderMaterial_noq32")
+material = SubResource("ShaderMaterial_yfqmt")
 layout_mode = 2
+
+[node name="BottomHBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="BottomHBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+tooltip_text = "1"
+max_value = 50.0
+step = 0.1
+ticks_on_borders = true
 
 [node name="VideoItemTab" parent="." instance=ExtResource("7_ndqgr")]
 visible = false

@@ -1,5 +1,5 @@
 class_name VideoItem
-extends RefCounted
+extends BaseEntity
 
 signal change_video_name
 
@@ -42,11 +42,8 @@ var create_time: String:
 # 预览图目录
 var preview_path: String
 
-# 封面图片
-var cover_picture_texture: Texture
-
 # 标签
-var labels := []
+var labels: Array
 
 # 其他图片路径目录
 var other_picture_paths: Array
@@ -59,42 +56,42 @@ var outline: String
 
 var is_deleted: bool
 
-# 构造函数，接收字典作为参数
-func _init(data: Dictionary = {}):
-	# 使用 get 方法提供默认值，避免未定义键报错
-	id = data.get("id", 0)
-	video_gallery_id = data.get("video_gallery_id", 0)
-	video_name = data.get("video_name", "")
-	video_path = data.get("video_path", "")
-	cover_picture_path = data.get("cover_picture_path", "")
-	create_time = data.get("create_time", "")
-	preview_path = data.get("preview_path", "")
-	if "labels" in data and data["labels"]:
-		labels = JSON.parse_string(data["labels"])
-	outline = data.get("outline", "")
-	if "other_picture_paths" in data and data["other_picture_paths"]:
-		other_picture_paths = JSON.parse_string(data["other_picture_paths"])
-	publish_time = data.get("publish_time", "")
-	is_deleted = data.get("is_deleted", false)
+## 构造函数，接收字典作为参数
+#func _init(data: Dictionary = {}):
+	## 使用 get 方法提供默认值，避免未定义键报错
+	#id = data.get("id", 0)
+	#video_gallery_id = data.get("video_gallery_id", 0)
+	#video_name = data.get("video_name", "")
+	#video_path = data.get("video_path", "")
+	#cover_picture_path = data.get("cover_picture_path", "")
+	#create_time = data.get("create_time", "")
+	#preview_path = data.get("preview_path", "")
+	#if "labels" in data and data["labels"]:
+		#labels = JSON.parse_string(data["labels"])
+	#outline = data.get("outline", "")
+	#if "other_picture_paths" in data and data["other_picture_paths"]:
+		#other_picture_paths = JSON.parse_string(data["other_picture_paths"])
+	#publish_time = data.get("publish_time", "")
+	#is_deleted = data.get("is_deleted", false)
 
 
-# 将对象转换为字典
-func to_dict() -> Dictionary:
-	var dict = {}
-	if id != 0:
-		dict["id"] = id
-	dict["video_gallery_id"] = video_gallery_id
-	dict["video_name"] = video_name
-	dict["video_path"] = video_path
-	dict["cover_picture_path"] = cover_picture_path
-	dict["create_time"] = create_time
-	dict["preview_path"] = preview_path
-	dict["labels"] = str(labels)
-	dict["outline"] = outline
-	dict["other_picture_paths"] = str(other_picture_paths)
-	dict["publish_time"] = publish_time
-	dict["is_deleted"] = is_deleted
-	return dict
+## 将对象转换为字典
+#func to_dict() -> Dictionary:
+	#var dict = {}
+	#if id != 0:
+		#dict["id"] = id
+	#dict["video_gallery_id"] = video_gallery_id
+	#dict["video_name"] = video_name
+	#dict["video_path"] = video_path
+	#dict["cover_picture_path"] = cover_picture_path
+	#dict["create_time"] = create_time
+	#dict["preview_path"] = preview_path
+	#dict["labels"] = str(labels)
+	#dict["outline"] = outline
+	#dict["other_picture_paths"] = str(other_picture_paths)
+	#dict["publish_time"] = publish_time
+	#dict["is_deleted"] = is_deleted
+	#return dict
 
 ## 初始化
 #func init_entity(data: Dictionary):

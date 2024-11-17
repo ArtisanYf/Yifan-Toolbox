@@ -4,7 +4,7 @@ shader_type canvas_item;
 #define iResolution 1.0/SCREEN_PIXEL_SIZE
 
 uniform sampler2D iChannel0;
-uniform float strength : hint_range(0.0, 10, 0.1) = 1.0;
+uniform float strength : hint_range(0.0, 20, 0.1) = 1.0;
 const float pi = atan(1.0) * 4.0;
 const int samples = 35;
 const float sigma = float(samples) * 0.25;

@@ -28,6 +28,8 @@ static func capture_video_screenshot(ffmpeg_path: String, cut_time: String, vide
 	
 # 捕获视频信息
 static func get_video_info(ffprobe_path: String, video_file: String) -> Dictionary:
+	if not ffprobe_path:
+		return {}
 
 	var command = [
 		"ffprobe", 

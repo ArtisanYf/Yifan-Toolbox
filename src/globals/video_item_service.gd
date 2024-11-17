@@ -1,7 +1,7 @@
 extends Node
 
 # 当视频项列表发生变化时发出
-signal change_video_item_array(type: Change_Array_Type, data: Dictionary)
+signal change_video_item_array(type: Change_Array_Type, video_item: VideoItem)
 
 # 视频列表变更信号类型
 enum Change_Array_Type{
@@ -49,81 +49,7 @@ var current_video_item_array :Array
 		#change_current_video_item.emit()
 
 func _init() -> void:
-	var table_dict: Dictionary = {
-		"id": 
-			{
-				"data_type":"int", # 类型
-				"primary_key": true, # 是否主键
-				"not_null": true, # 不能为 null
-				"auto_increment": true # 自增
-			},
-		"video_gallery_id":
-			{
-				"data_type":"int",
-				"not_null": true
-			},
-		"video_name": 
-			{
-				"data_type":"text",
-				"not_null": true
-			},
-		"video_path":
-			{
-				"data_type":"text",
-				"not_null": true
-			},
-		"cover_picture_path":
-			{
-				"data_type":"text",
-				"not_null": true
-			},
-		"preview_path":
-			{
-				"data_type":"text",
-				"not_null": true
-			},
-		"performer_id": # 演员 id
-			{
-				"data_type":"int"
-			},
-		"segmentation_video": # 分段视频 -》 数组格式
-			{
-				"data_type":"text"
-			},
-		"publish_time": # 发行时间
-			{
-				"data_type":"text"
-			},
-		"score": # 得分
-			{
-				"data_type":"int"
-			},
-		"duration": # 时长
-			{
-				"data_type":"text"
-			},
-		"labels": # 标签
-			{
-				"data_type":"text"
-			},
-		"outline": # 大纲
-			{
-				"data_type":"text"
-			},
-		"other_picture_paths":
-			{
-				"data_type":"text"
-			},
-		"create_time": # 创建时间
-			{
-				"data_type":"text",
-			},
-		"is_deleted":
-			{
-				"data_type":"blob",
-				"not_null": true
-			}
-	}
+	var table_dict: Dictionary = VideoItem.new().table_dict()
 	# 通过 sql 检查表是否已存在
 	db.query_with_bindings("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", [TABLE_NAME])
 	if db.query_result.is_empty():
@@ -156,7 +82,11 @@ func select_one(query_buildder: QueryBuilder) -> VideoItem:
 		return null
 	return VideoItem.new(array[0])
 	
-## 新增库
+## 通过 id 查询
+func select_by_id(id: int) -> VideoItem:
+	return select_one(QueryBuilder.new().eq("id", id))
+	
+## 新增
 func insert(video_item: VideoItem) -> bool:
 	print(video_item.to_dict())
 	var success = db.insert_row(TABLE_NAME, video_item.to_dict())
@@ -166,14 +96,24 @@ func insert(video_item: VideoItem) -> bool:
 		change_video_item_array.emit(Change_Array_Type.SAVE, video_item)
 	return success
 
-## 更新库
+## 批量新增
+func insert_batch(array: Array) -> bool:
+	var temp := []
+	for video_item in array:
+		temp.append(video_item.to_dict())
+	var success = db.insert_rows(TABLE_NAME, temp)
+	if success:
+		change_video_item_array.emit(Change_Array_Type.QUERY, null)
+	return success
+
+## 更新
 func update(update_builder: UpdateBuilder) -> bool:
 	var success = db.update_rows(TABLE_NAME, update_builder.conditions, update_builder.dict)
 	if success:
-		change_video_item_array.emit(Change_Array_Type.UPDATE, VideoGallery.new(update_builder.param))
+		change_video_item_array.emit(Change_Array_Type.UPDATE, VideoItem.new(update_builder.param))
 	return success
 
-# 删除库
+# 删除
 func delete(basic_builder: BasicBuilder) -> bool:
 	var success = db.delete_rows(TABLE_NAME, basic_builder.conditions)
 	if success:
@@ -182,19 +122,30 @@ func delete(basic_builder: BasicBuilder) -> bool:
 
 # 逻辑删除
 func logic_delete(update_builder: UpdateBuilder) -> bool:
-	if update_builder.table_logic != "":
+	if update_builder.table_logic:
 		update_builder.dict[update_builder.table_logic] = 1
 	var success = db.update_rows(TABLE_NAME, update_builder.conditions, update_builder.dict)
 	if success:
-		var video_gallery = VideoGallery.new()
-		video_gallery.id = update_builder.param.id
-		change_video_item_array.emit(Change_Array_Type.DELETE, video_gallery)
+		var video_item = VideoItem.new()
+		video_item.id = update_builder.param.id
+		change_video_item_array.emit(Change_Array_Type.DELETE, video_item)
 	return success
+
+# 逻辑删除根据id
+func logic_delete_by_id(id: int) -> bool:
+	return logic_delete(
+		UpdateBuilder.new()
+			.eq("id", id)
+		)
+		
+## count
+#func count(query_buildder: QueryBuilder) -> int:
+	#db.c
 
 # 标签统计
 func label_statc(label_name: String = "") -> Array:
 	var condition: String = ""
-	if label_name != "":
+	if label_name:
 		condition = "where label LIKE '%{0}%'".format([label_name])
 	db.query_with_bindings("SELECT json_each.value AS label,COUNT(*) AS count FROM t_video_item,json_each(t_video_item.labels) " + condition + "GROUP BY label", [])
 	print(db.query_result)

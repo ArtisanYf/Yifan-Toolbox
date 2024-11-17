@@ -1,0 +1,431 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxrl85tw0cluw"]
+
+[ext_resource type="Script" path="res://src/modules/local_video/video/video_item_info_panel.gd" id="1_0iiwc"]
+[ext_resource type="Texture2D" uid="uid://dsku6nihs8d1o" path="res://assets/icon/shut_down_1_16.png" id="2_r504m"]
+[ext_resource type="Texture2D" uid="uid://xqmorqjlk4el" path="res://assets/icon/aleft_32.png" id="3_6ivp1"]
+[ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="4_ee8eu"]
+[ext_resource type="Texture2D" uid="uid://bk5x7s201nnw1" path="res://assets/icon/home_32.png" id="4_qknln"]
+[ext_resource type="Texture2D" uid="uid://4ftslkuv74g6" path="res://assets/icon/aright_32.png" id="5_d0c0j"]
+[ext_resource type="Texture2D" uid="uid://drfork548rn6b" path="res://assets/icon/copy_16.png" id="6_a84tj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m5tf"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.363281, 0.363281, 0.363281, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f0lq"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.234375, 0.234375, 0.234375, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="VideoItemInfoPanel" type="Window"]
+transparent_bg = true
+initial_position = 3
+size = Vector2i(1776, 999)
+current_screen = 0
+borderless = true
+transparent = true
+script = ExtResource("1_0iiwc")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0m5tf")
+
+[node name="V" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopMargin" type="MarginContainer" parent="Panel/V"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="TitleHBox" type="HBoxContainer" parent="Panel/V/TopMargin"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Panel/V/TopMargin/TitleHBox"]
+layout_mode = 2
+text = "英雄联盟"
+
+[node name="H" type="HBoxContainer" parent="Panel/V/TopMargin"]
+layout_mode = 2
+alignment = 2
+
+[node name="Button2" type="Button" parent="Panel/V/TopMargin/H"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "编辑"
+expand_icon = true
+
+[node name="CloseButton" type="Button" parent="Panel/V/TopMargin/H"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+theme_type_variation = &"CloseButton"
+icon = ExtResource("2_r504m")
+icon_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="Panel/V"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LeftMargin" type="MarginContainer" parent="Panel/V/H"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PrevButton" type="Button" parent="Panel/V/H/LeftMargin"]
+custom_minimum_size = Vector2(30, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("3_6ivp1")
+icon_alignment = 1
+expand_icon = true
+
+[node name="V" type="VBoxContainer" parent="Panel/V/H/LeftMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="PosterButton" type="Button" parent="Panel/V/H/LeftMargin/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "海报图"
+icon = ExtResource("4_qknln")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="PreviewButton" type="Button" parent="Panel/V/H/LeftMargin/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "预览图"
+icon = ExtResource("4_qknln")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="MainMargin" type="MarginContainer" parent="Panel/V/H"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="MainVBox" type="VBoxContainer" parent="Panel/V/H/MainMargin"]
+custom_minimum_size = Vector2(1300, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/V/H/MainMargin/MainVBox"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_ee8eu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PicMargin" type="MarginContainer" parent="Panel/V/H/MainMargin/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 10
+
+[node name="PicPanel" type="PanelContainer" parent="Panel/V/H/MainMargin/MainVBox/PicMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2f0lq")
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/V/H/MainMargin/MainVBox/PicMargin/PicPanel"]
+layout_mode = 2
+
+[node name="PicHBox" type="HBoxContainer" parent="Panel/V/H/MainMargin/MainVBox/PicMargin/PicPanel/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VideoInfoMargin" type="MarginContainer" parent="Panel/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+
+[node name="V" type="VBoxContainer" parent="Panel/V/H/VideoInfoMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/V/H/VideoInfoMargin/V"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="H" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/MarginContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FilmInfoButton" type="Button" parent="Panel/V/H/VideoInfoMargin/V/MarginContainer/H"]
+custom_minimum_size = Vector2(70, 32)
+layout_mode = 2
+toggle_mode = true
+text = "影片信息"
+
+[node name="VideoInfoButton" type="Button" parent="Panel/V/H/VideoInfoMargin/V/MarginContainer/H"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+toggle_mode = true
+text = "视频信息"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/V/H/VideoInfoMargin/V"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label3" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VBoxContainer"]
+layout_mode = 2
+text = "大纲"
+
+[node name="Label" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VBoxContainer"]
+layout_mode = 2
+text = "标签："
+
+[node name="Label2" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VBoxContainer"]
+layout_mode = 2
+text = "演员："
+
+[node name="Label4" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VBoxContainer"]
+layout_mode = 2
+text = "发布时间："
+
+[node name="VideoInfoVBox" type="VBoxContainer" parent="Panel/V/H/VideoInfoMargin/V"]
+layout_mode = 2
+
+[node name="VideoCopyMargin" type="MarginContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="VideoInfoCopyButton" type="Button" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoCopyMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+icon = ExtResource("6_a84tj")
+
+[node name="VideoFormatHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="FormatNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoFormatHBox"]
+layout_mode = 2
+text = "视频格式："
+
+[node name="FormatValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoFormatHBox"]
+layout_mode = 2
+
+[node name="VideoDurationHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="DurationNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoDurationHBox"]
+layout_mode = 2
+text = "时长："
+
+[node name="DurationValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoDurationHBox"]
+layout_mode = 2
+
+[node name="VideoFrameRateHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="FrameRateNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoFrameRateHBox"]
+layout_mode = 2
+text = "帧率："
+
+[node name="FrameRateValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoFrameRateHBox"]
+layout_mode = 2
+
+[node name="VideoBitRateHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="BitRateNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoBitRateHBox"]
+layout_mode = 2
+text = "总码率："
+
+[node name="BitRateValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoBitRateHBox"]
+layout_mode = 2
+
+[node name="VideoResolutionHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="ResolutionNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoResolutionHBox"]
+layout_mode = 2
+text = "分辨率："
+
+[node name="ResolutionValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoResolutionHBox"]
+layout_mode = 2
+
+[node name="VideoAspectRatioHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="AspectRatioNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoAspectRatioHBox"]
+layout_mode = 2
+text = "宽高比："
+
+[node name="AspectRatioValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoAspectRatioHBox"]
+layout_mode = 2
+
+[node name="VideoBitsHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="BitsNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoBitsHBox"]
+layout_mode = 2
+text = "位深度："
+
+[node name="BitsValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoBitsHBox"]
+layout_mode = 2
+
+[node name="VideoTotalFrameRateHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="TotalFrameRateNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoTotalFrameRateHBox"]
+layout_mode = 2
+text = "总帧率："
+
+[node name="TotalFrameRateValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/VideoTotalFrameRateHBox"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="AudioCodecHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="AudioCodecNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioCodecHBox"]
+layout_mode = 2
+text = "音频格式："
+
+[node name="AudioCodecValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioCodecHBox"]
+layout_mode = 2
+
+[node name="AudioBitRateHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="AudioBitRateNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioBitRateHBox"]
+layout_mode = 2
+text = "音频码率："
+
+[node name="AudioBitRateValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioBitRateHBox"]
+layout_mode = 2
+
+[node name="AudioSampleRateHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="AudioSampleRateNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioSampleRateHBox"]
+layout_mode = 2
+text = "采样率："
+
+[node name="AudioSampleRateValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioSampleRateHBox"]
+layout_mode = 2
+
+[node name="AudioChannelsRateHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="AudioChannelsNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioChannelsRateHBox"]
+layout_mode = 2
+text = "声道数："
+
+[node name="AudioChannelsValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/AudioChannelsRateHBox"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="FileSuffixHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="FileSuffixNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/FileSuffixHBox"]
+layout_mode = 2
+text = "文件后缀："
+
+[node name="FileSuffixValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/FileSuffixHBox"]
+layout_mode = 2
+
+[node name="FileSizeHBox" type="HBoxContainer" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+
+[node name="FileSizeNameLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/FileSizeHBox"]
+layout_mode = 2
+text = "文件大小："
+
+[node name="FileSizeValueLabel" type="Label" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox/FileSizeHBox"]
+layout_mode = 2
+
+[node name="FileLocationButton" type="LinkButton" parent="Panel/V/H/VideoInfoMargin/V/VideoInfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45098, 0.682353, 0.776471, 1)
+theme_override_colors/font_focus_color = Color(0.45098, 0.682353, 0.776471, 1)
+theme_override_colors/font_pressed_color = Color(0.45098, 0.682353, 0.776471, 1)
+theme_override_colors/font_hover_color = Color(0.45098, 0.682353, 0.776471, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.45098, 0.682353, 0.776471, 1)
+theme_override_colors/font_disabled_color = Color(0.45098, 0.682353, 0.776471, 1)
+theme_override_colors/font_outline_color = Color(0.45098, 0.682353, 0.776471, 1)
+underline = 1
+
+[node name="Margin" type="MarginContainer" parent="Panel/V/H/VideoInfoMargin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 60
+
+[node name="PlayButton" type="Button" parent="Panel/V/H/VideoInfoMargin/Margin"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_disabled_color = Color(0.615686, 0.52549, 0.14902, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.615686, 0.52549, 0.14902, 1)
+theme_override_colors/font_hover_color = Color(0.615686, 0.52549, 0.14902, 1)
+theme_override_colors/font_pressed_color = Color(0.615686, 0.52549, 0.14902, 1)
+theme_override_colors/font_focus_color = Color(0.615686, 0.52549, 0.14902, 1)
+theme_override_colors/font_color = Color(0.615407, 0.526428, 0.149861, 1)
+theme_override_colors/font_outline_color = Color(0.371094, 0.322344, 0.118866, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+text = "PLAY"
+
+[node name="RightMargin" type="VBoxContainer" parent="Panel/V/H"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="NextButton" type="Button" parent="Panel/V/H/RightMargin"]
+custom_minimum_size = Vector2(30, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("5_d0c0j")
+icon_alignment = 1
+expand_icon = true

@@ -38,7 +38,7 @@ func delete(basic_builder: BasicBuilder) -> bool:
 
 # 逻辑删除
 func logic_delete(update_builder: UpdateBuilder) -> bool:
-	if update_builder.table_logic != "":
+	if update_builder.table_logic:
 		update_builder.dict[update_builder.table_logic] = 1
 	var success = db.update_rows(table_name, update_builder.conditions, update_builder.dict)
 	return success

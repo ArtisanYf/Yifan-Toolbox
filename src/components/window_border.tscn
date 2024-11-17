@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bncflvup3c7pe"]
+[gd_scene load_steps=16 format=3 uid="uid://bncflvup3c7pe"]
 
 [ext_resource type="Script" path="res://src/components/window_border.gd" id="1_1j2gd"]
 [ext_resource type="Texture2D" uid="uid://b0pfn3wcd5hwa" path="res://icon.svg" id="1_o7uaq"]
+[ext_resource type="Texture2D" uid="uid://cqkfwmr2hexiv" path="res://assets/icon/theme_32_2.png" id="3_1bh4h"]
 [ext_resource type="Texture2D" uid="uid://kh24jgrmk1jc" path="res://assets/icon/minimize_1_32.png" id="3_n1nwu"]
 [ext_resource type="Texture2D" uid="uid://b1ojlrsfxf25u" path="res://assets/icon/maximize_1_32.png" id="4_vdb2t"]
 [ext_resource type="Texture2D" uid="uid://bnv7g8aow738m" path="res://assets/icon/shut_down_1_32.png" id="5_a1bud"]
@@ -84,6 +85,13 @@ mouse_filter = 2
 theme_override_constants/separation = 1
 alignment = 2
 
+[node name="ThemeButton" type="Button" parent="HEnd"]
+custom_minimum_size = Vector2(40, 16)
+layout_mode = 2
+icon = ExtResource("3_1bh4h")
+icon_alignment = 1
+expand_icon = true
+
 [node name="MinimizationButton" type="Button" parent="HEnd"]
 custom_minimum_size = Vector2(40, 22)
 layout_mode = 2
@@ -114,5 +122,3 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_eej76")
 icon = ExtResource("5_a1bud")
 icon_alignment = 1
 expand_icon = true
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]

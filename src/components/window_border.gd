@@ -4,22 +4,35 @@ const MAXIMIZE_1_32 = preload("res://assets/icon/maximize_1_32.png")
 const MAXIMIZE_3_32 = preload("res://assets/icon/maximize_3_32.png")
 var is_dragging = false  # 用来记录是否在拖动窗口
 
+
+@export var window: Window
+
+
 var drag_offset = Vector2i.ZERO  # 记录拖动的偏移量
 
 
-@onready var window := get_tree().root
+#@onready var window := get_tree().root
 @onready var minimization_button: Button = $HEnd/MinimizationButton
 @onready var maximize_button: Button = $HEnd/MaximizeButton
 @onready var close_button: Button = $HEnd/CloseButton
+@onready var theme_button: Button = $HEnd/ThemeButton
 
 
 func _ready():
+	if not window:
+		window = get_tree().root
 	gui_input.connect(window_moving)
 	# 连接按钮信号
 	minimization_button.pressed.connect(_on_minimization_button_pressed)
 	maximize_button.pressed.connect(_on_maximize_button_pressed)
 	close_button.pressed.connect(_on_close_button_pressed)
-	
+	theme_button.pressed.connect(func():
+		var scene = get_tree().current_scene as Control
+		if scene.theme == load("res://src/theme/light_theme.tres"):
+			scene.theme = load("res://src/theme/dark_theme.tres")
+		else:
+			scene.theme = load("res://src/theme/light_theme.tres")
+	)
 	
 # 窗口移动
 func window_moving(event: InputEvent) -> void:
@@ -55,4 +68,9 @@ func _on_maximize_button_pressed():
 		
 # 关闭窗口
 func _on_close_button_pressed():
-	get_tree().quit()
+	if window == get_tree().root:
+		get_tree().quit()
+	else:
+		window.queue_free()
+	#get_tree().quit()
+	

@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfgdch6cnijea"]
+
+[ext_resource type="Script" path="res://src/modules/local_video/setting/video_setting_page.gd" id="1_aigu7"]
+[ext_resource type="PackedScene" uid="uid://bncflvup3c7pe" path="res://src/components/window_border.tscn" id="1_yyput"]
+
+[node name="VideoSettingPage" type="Window"]
+initial_position = 1
+size = Vector2i(800, 900)
+borderless = true
+script = ExtResource("1_aigu7")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="V" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowBorder" parent="Panel/V" instance=ExtResource("1_yyput")]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="Panel/V"]
+layout_mode = 2
+tab_count = 1
+tab_0/title = "基本"
+
+[node name="Margin" type="MarginContainer" parent="Panel/V"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/V/Margin"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/V/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "播放"
+
+[node name="Label2" type="Label" parent="Panel/V/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "指定播放器
+"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/V/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Button" type="Button" parent="Panel/V/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "选择"
